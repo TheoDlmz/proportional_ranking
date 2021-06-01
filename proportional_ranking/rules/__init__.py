@@ -8,3 +8,5 @@ from proportional_ranking.rules.justify import *
 from proportional_ranking.rules.Phragmen import *
 from proportional_ranking.rules.reversePAV import *
 from proportional_ranking.rules.seqPAV import *
+from proportional_ranking.rules.seqScorePAV import *
+from proportional_ranking.rules.seqX import *
