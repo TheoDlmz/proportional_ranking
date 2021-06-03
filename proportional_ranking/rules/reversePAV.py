@@ -3,6 +3,10 @@ import numpy as np
 
 
 class reversePAV(propRanking):
+    """
+    reversePAV rule. Alpha parameter change weight to favors big or small groups
+    (depending on the sign of alpha)
+    """
 
     def __init__(self, alpha=0):
         super().__init__()
@@ -24,7 +28,7 @@ class reversePAV(propRanking):
             curr_weights = weights.copy()
 
             for i in range(len(weights)):
-                curr_weights[i] = max(0.0001, weights[i])
+                curr_weights[i] = max(0.001, weights[i])  # To avoid dividing by 0.
 
             s = (1 / curr_weights).dot(scores)
             j = -1

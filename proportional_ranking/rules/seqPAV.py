@@ -4,6 +4,10 @@ import math
 
 
 class seqPAV(propRanking):
+    """
+    SeqPAV rule. Alpha parameter change weight to favors big or small groups
+    (depending on the sign of alpha)
+    """
 
     def __init__(self, alpha=0):
         super().__init__()

@@ -6,6 +6,9 @@ from itertools import permutations
 
 
 class justifyIt(propRanking):
+    """
+    This rule picks the first ranking with quality >= 1
+    """
     def __init__(self):
         super().__init__()
         self.name = "JustifyIt"
@@ -21,6 +24,9 @@ class justifyIt(propRanking):
 
 
 class maxQuality(propRanking):
+    """
+    This rule picks the ranking with maximum quality
+    """
     def __init__(self, verbose=False):
         super().__init__()
         self.name = "MaxQuality"

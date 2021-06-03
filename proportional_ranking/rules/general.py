@@ -4,7 +4,9 @@ from proportional_ranking.utils.printing import print_ranking
 
 
 class propRanking(DeleteCacheMixin):
-
+    """
+    General class for Proportional Ranking rules.
+    """
     def __init__(self):
         self.profile = None
         self.name = ""

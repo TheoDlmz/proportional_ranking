@@ -4,9 +4,12 @@ import math
 
 
 class AV(propRanking):
+    """
+    Approval voting.
+    """
     def __init__(self):
         super().__init__()
-        self.name = "AV"
+        self.name = "Approval Voting"
 
     def ranking(self):
         profile = self.profile

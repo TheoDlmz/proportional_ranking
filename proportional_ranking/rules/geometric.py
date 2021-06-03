@@ -3,12 +3,15 @@ import numpy as np
 
 
 class geometric(propRanking):
+    """
+    Geometric rule
+    """
 
     def __init__(self, alpha):
         super().__init__()
         self.profile = None
         self.alpha = alpha
-        self.name = "geometric (%.2f)" % self.alpha
+        self.name = "Geometric (%.2f)" % self.alpha
 
     def ranking(self):
         profile = self.profile

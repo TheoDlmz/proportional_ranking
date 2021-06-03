@@ -2,10 +2,10 @@ from proportional_ranking.rules.general import propRanking
 import numpy as np
 
 
-class IRVSum(propRanking):
+class sumLoads(propRanking):
     def __init__(self):
         super().__init__()
-        self.name = "IRVSum"
+        self.name = "sumLoads"
 
     def ranking(self):
         profile = self.profile
@@ -15,8 +15,8 @@ class IRVSum(propRanking):
         load = np.zeros(n)
         ranking = []
 
-        for i in range(m):
-            quota = n / (i + 2)
+        for i in range(1, m+1):
+            quota = n / (i + 1)
             load_k = quota * load
             s = (1 - np.minimum(1, load_k)).dot(scores)
 
@@ -38,5 +38,3 @@ class IRVSum(propRanking):
 
         return ranking
 
-    def name(self):
-        return "IRVsum"
