@@ -1,17 +1,52 @@
-from proportional_ranking.rules.general import propRanking
+from proportional_ranking.rules.general import ProportionalRanking
 from proportional_ranking.utils.quality import quality, justify
 from proportional_ranking.utils.printing import print_ranking
 from proportional_ranking.rules.AV import AV
 from itertools import permutations
 
 
-class justifyIt(propRanking):
+class Error(Exception):
+    """Base class for exceptions in this module."""
+    pass
+
+
+class RankingNotFoundError(Error):
+    """Exception raised for errors in the input.
+
+    Attributes:
+        expression -- input expression in which the error occurred
+        message -- explanation of the error
     """
-    This rule picks the first ranking with quality >= 1
+
+    def __init__(self, expression, message):
+        self.expression = expression
+        self.message = message
+
+
+class JustifiedRanking(ProportionalRanking):
+    """
+    This rule picks the first ranking it founds with quality >= 1, i.e. every justified demand
+    is fulfilled.
+
+    If no such ranking exists, it raises an error.
+
+
+    Attributes
+    ----------
+    profile: np.ndarray
+        The profile of voters used for the election
+
+    Examples
+    --------
+    >>> election = JustifiedRanking()
+    >>> election.set_profile([[1, 0, 1, 0, 0], [0, 1, 1, 1, 1], [0, 1, 1, 0, 0]])
+    <proportional_ranking.rules.justify.JustifiedRanking object at ...>
+    >>> election.print_ranking()
+    c > a > b > d > e
+
     """
     def __init__(self):
-        super().__init__()
-        self.name = "JustifyIt"
+        super().__init__("JustifiedRanking")
 
     def ranking(self):
         profile = self.profile
@@ -20,30 +55,40 @@ class justifyIt(propRanking):
             if justify(profile, ranking):
                 return ranking
 
-        return AV().set_profile(profile).ranking()
+        raise RankingNotFoundError("No ranking satisfy justify demand")
 
 
-class maxQuality(propRanking):
+class MaximizeQuality(ProportionalRanking):
     """
-    This rule picks the ranking with maximum quality
+    This rule picks the ranking with maximum quality, as defined in the paper
+    Proportional Rankings by Skowron et Al.
+
+    Attributes
+    ----------
+    profile: np.ndarray
+        The profile of voters used for the election
+
+    Examples
+    --------
+    >>> election = MaximizeQuality()
+    >>> election.set_profile([[1, 0, 1, 0, 0], [0, 1, 1, 1, 1], [0, 1, 1, 0, 0]])
+    <proportional_ranking.rules.justify.MaximizeQuality object at ...>
+    >>> election.print_ranking()
+    c > a > b > d > e
+
     """
-    def __init__(self, verbose=False):
-        super().__init__()
-        self.name = "MaxQuality"
-        self.verbose = verbose
+    def __init__(self):
+        super().__init__("MaxQuality")
 
     def ranking(self):
-        profile = self.profile
-        n, m = profile.shape
+        n, m = self.profile.shape
         max_q = 0
         best_ranking = None
 
         for ranking in list(permutations(range(m))):
-            q = quality(profile, ranking)
+            q = quality(self.profile, ranking)
             if q > max_q:
                 best_ranking = ranking
                 max_q = q
-            if q >= 1 and self.verbose:
-                print_ranking(ranking)
 
         return best_ranking

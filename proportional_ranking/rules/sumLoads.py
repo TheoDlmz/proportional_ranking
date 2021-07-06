@@ -1,8 +1,8 @@
-from proportional_ranking.rules.general import propRanking
+from proportional_ranking.rules.general import ProportionalRanking
 import numpy as np
 
 
-class sumLoads(propRanking):
+class sumLoads(ProportionalRanking):
     def __init__(self):
         super().__init__()
         self.name = "sumLoads"

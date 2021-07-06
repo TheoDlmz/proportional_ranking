@@ -1,20 +1,18 @@
-from proportional_ranking.rules.general import propRanking
+from proportional_ranking.rules.general import ProportionalRanking
 import numpy as np
 import math
 
 
-class enestrom(propRanking):
+class enestrom(ProportionalRanking):
     """
     Rule described in https://arxiv.org/pdf/1907.10590.pdf
     """
     def __init__(self):
-        super().__init__()
-        self.name = "Enestörm"
+        super().__init__("Enestörm")
 
     def ranking(self):
-        profile = self.profile
-        n, m = profile.shape
-        scores = profile.copy()
+        n, m = self.profile.shape
+        scores = self.profile.copy()
         loads = [[] for _ in range(n)]
         ranking = []
 

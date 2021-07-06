@@ -1,31 +1,24 @@
-from proportional_ranking.rules.general import propRanking
+from proportional_ranking.rules.general import ProportionalRanking
 from itertools import permutations
 from fractions import Fraction
 
 import numpy as np
 
-class seqX(propRanking):
+class seqX(ProportionalRanking):
     """
     Sequential version of Rule X. By default uses an increment of 1/n.
     """
 
     def __init__(self, increment=0):
-        super().__init__()
-        if increment <= 0: 
-            self.incr = 0
-        else:
-            self.incr = increment
-        self.name = "seqX with " + str(self.incr)
+        self.incr = max(0, increment)
+        super().__init__("seqX with " + str(self.incr))
 
     def set_increment(self, increment):
-        if increment <= 0: 
-            self.incr = 0
-        else:
-            self.incr = increment
+        self.incr = max(0, increment)
         self.name = "seqScorePAV with " + str(self.incr)
 
     def __get_min_q(self, budgets, cand):
-        """ 
+        """
         Compute minimal q for Rule X and seqX.
         Shamelessly copied and adpated from Martin Lackners code.
         """

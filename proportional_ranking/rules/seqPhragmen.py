@@ -1,22 +1,23 @@
-from proportional_ranking.rules.general import propRanking
+from proportional_ranking.rules.general import ProportionalRanking
 import numpy as np
 import math
+from fractions import Fraction
 
 
-class phragmen(propRanking):
+class Phragmen(ProportionalRanking):
     """
-    This is Phragmen's rule.
+    Phragmen's voting rule. See paper Proportional Ranking by Skowron et Al for more details.
+
+
     """
 
     def __init__(self):
-        super().__init__()
-        self.name = "(Seq-)Phragmen"
+        super().__init__("Phragmen")
 
     def ranking(self):
-        profile = self.profile
-        n, m = profile.shape
+        n, m = self.profile.shape
 
-        scores = profile.copy()
+        scores = self.profile.copy()
         load = np.zeros(n)
         ranking = []
 
@@ -47,6 +48,5 @@ class phragmen(propRanking):
 
     def representation(self, alpha, lambd):
         return math.ceil(5 * lambd / alpha ** 2 + 1 / alpha)
-
 
 

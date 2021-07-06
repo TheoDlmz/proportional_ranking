@@ -1,15 +1,14 @@
-from proportional_ranking.rules.general import propRanking
+from proportional_ranking.rules.general import ProportionalRanking
 from itertools import permutations
 
 
-class scorePAV(propRanking):
+class scorePAV(ProportionalRanking):
     """
-    The rule defined by Jérôme in his Review.
+    The rule is defined by Jérôme Lang in his Open Review.
     """
     def __init__(self, scoring_vector=None):
-        super().__init__()
+        super().__init__("scorePAV")
         self.scoring_vector = scoring_vector
-        self.name = "scorePAV"
 
     def _get_score(self, profile, ranking, vector):
         m = len(ranking)

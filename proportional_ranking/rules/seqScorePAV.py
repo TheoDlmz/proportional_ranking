@@ -1,12 +1,12 @@
-from proportional_ranking.rules.general import propRanking
+from proportional_ranking.rules.general import ProportionalRanking
 from itertools import permutations
 
 import numpy as np
 
-class seqScorePAV(propRanking):
+class seqScorePAV(ProportionalRanking):
     """
     Sequential version of Jeromes new approval to ranking rule.
-    For the score vector (1,1,1,...) this rule is equivalent to 
+    For the score vector (1,1,1,...) this rule is equivalent to
     sequential PAV.
 
     Ties are broken in alphabetically.
@@ -17,8 +17,7 @@ class seqScorePAV(propRanking):
     """
 
     def __init__(self, scorevec=1):
-        super().__init__()
-        self.name = "seqScorePAV with " + str(scorevec) 
+        super().__init__("seqScorePAV with " + str(scorevec))
         self.scorevec = scorevec
 
     def set_scorevector(self, scorevec):
@@ -84,6 +83,6 @@ class seqScorePAV(propRanking):
                     best_gain = with_cand - without_cand
             # append cand with best gain to ranking
             ranking.append(next_cand)
-        
+
         return ranking
 

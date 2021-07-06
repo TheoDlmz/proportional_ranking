@@ -4,7 +4,7 @@ from proportional_ranking.utils.printing import print_ranking
 import numpy as np
 
 
-class propRanking(DeleteCacheMixin):
+class ProportionalRanking(DeleteCacheMixin):
     """
     General class for Proportional Ranking rules.
 
@@ -37,7 +37,7 @@ class propRanking(DeleteCacheMixin):
 
         Returns
         -------
-        propRanking
+        ProportionalRanking
             Itself
 
         """

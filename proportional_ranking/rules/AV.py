@@ -1,9 +1,9 @@
-from proportional_ranking.rules.general import propRanking
+from proportional_ranking.rules.general import ProportionalRanking
 import numpy as np
 import math
 
 
-class AV(propRanking):
+class AV(ProportionalRanking):
     """
     Approval voting rule:
     The candidates are ordered with respect to their approval scores
