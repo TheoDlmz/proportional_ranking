@@ -25,10 +25,10 @@ class reversePAV(propRanking):
         ranking = []
 
         for _ in range(m):
-            curr_weights = weights.copy()
+            curr_weights = np.zeros(len(weights))
 
             for i in range(len(weights)):
-                curr_weights[i] = max(0.001, weights[i])  # To avoid dividing by 0.
+                curr_weights[i] = max(0.01, weights[i])  # To avoid dividing by 0.
 
             s = (1 / curr_weights).dot(scores)
             j = -1

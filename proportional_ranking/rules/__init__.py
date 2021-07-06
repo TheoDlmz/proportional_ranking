@@ -10,3 +10,4 @@ from proportional_ranking.rules.reversePAV import *
 from proportional_ranking.rules.seqPAV import *
 from proportional_ranking.rules.seqScorePAV import *
 from proportional_ranking.rules.seqX import *
+from proportional_ranking.rules.enestrom import *
