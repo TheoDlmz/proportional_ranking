@@ -2,7 +2,7 @@ from proportional_ranking.rules.general import ProportionalRanking
 from itertools import permutations
 
 
-class scorePAV(ProportionalRanking):
+class ScorePAV(ProportionalRanking):
     """
     The rule is defined by Jérôme Lang in his Open Review.
     """
@@ -40,3 +40,13 @@ class scorePAV(ProportionalRanking):
                 best = ranking
 
         return best
+
+
+class BordaPAV(ScorePAV):
+    """
+    The rule is defined by Jérôme Lang in his Open Review.
+    """
+    def __init__(self):
+        super().__init__()
+        self.name = "BordaPAV"
+

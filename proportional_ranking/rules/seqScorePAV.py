@@ -1,9 +1,9 @@
 from proportional_ranking.rules.general import ProportionalRanking
 from itertools import permutations
-
 import numpy as np
 
-class seqScorePAV(ProportionalRanking):
+
+class SeqScorePAV(ProportionalRanking):
     """
     Sequential version of Jeromes new approval to ranking rule.
     For the score vector (1,1,1,...) this rule is equivalent to
@@ -13,10 +13,10 @@ class seqScorePAV(ProportionalRanking):
 
     If length(scorevector) < m, then we add 0's to the scorevector.
     If scorevector is only an int x, we set scorevector to (x,x,x,...).
-    If scorevector euqals 'b', we set scorevector to (m-1, m-2, ...).
+    If scorevector equals 'b', we set scorevector to (m-1, m-2, ...).
     """
 
-    def __init__(self, scorevec=1):
+    def __init__(self, scorevec='b'):
         super().__init__("seqScorePAV with " + str(scorevec))
         self.scorevec = scorevec
 
@@ -86,3 +86,7 @@ class seqScorePAV(ProportionalRanking):
 
         return ranking
 
+
+class SeqBordaPAV(SeqScorePAV):
+    def __init__(self):
+        super().__init__('b')
