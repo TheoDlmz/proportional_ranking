@@ -5,8 +5,6 @@
 import pytest
 
 
-from proportional_ranking import proportional_ranking
-
 
 @pytest.fixture
 def response():
